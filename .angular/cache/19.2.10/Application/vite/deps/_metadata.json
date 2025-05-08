@@ -1,0 +1,70 @@
+{
+  "hash": "a78cd2ac",
+  "configHash": "2b7330eb",
+  "lockfileHash": "3c71143a",
+  "browserHash": "0897e848",
+  "optimized": {
+    "@angular/common": {
+      "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
+      "file": "@angular_common.js",
+      "fileHash": "082ef9b5",
+      "needsInterop": false
+    },
+    "@angular/common/http": {
+      "src": "../../../../../../node_modules/@angular/common/fesm2022/http.mjs",
+      "file": "@angular_common_http.js",
+      "fileHash": "a63b9a69",
+      "needsInterop": false
+    },
+    "@angular/core": {
+      "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
+      "file": "@angular_core.js",
+      "fileHash": "27406dc6",
+      "needsInterop": false
+    },
+    "@angular/forms": {
+      "src": "../../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
+      "file": "@angular_forms.js",
+      "fileHash": "59e9963b",
+      "needsInterop": false
+    },
+    "@angular/platform-browser": {
+      "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
+      "file": "@angular_platform-browser.js",
+      "fileHash": "37ad9ff7",
+      "needsInterop": false
+    },
+    "@angular/router": {
+      "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
+      "file": "@angular_router.js",
+      "fileHash": "1d09a350",
+      "needsInterop": false
+    },
+    "rxjs": {
+      "src": "../../../../../../node_modules/rxjs/dist/esm5/index.js",
+      "file": "rxjs.js",
+      "fileHash": "f02d8e81",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-4NWO6BCT": {
+      "file": "chunk-4NWO6BCT.js"
+    },
+    "chunk-IQ4N5VR5": {
+      "file": "chunk-IQ4N5VR5.js"
+    },
+    "chunk-SBNDUHYB": {
+      "file": "chunk-SBNDUHYB.js"
+    },
+    "chunk-6OPMZEJQ": {
+      "file": "chunk-6OPMZEJQ.js"
+    },
+    "chunk-EXBCAVIY": {
+      "file": "chunk-EXBCAVIY.js"
+    },
+    "chunk-S35MAB2V": {
+      "file": "chunk-S35MAB2V.js"
+    }
+  }
+}

@@ -1,0 +1,73 @@
+<div class="dashboard-home">
+    <div class="stats-cards">
+      <div class="stat-card">
+        <div class="stat-header">
+          <h3>Total Revenue</h3>
+        </div>
+        <div class="stat-content">
+          <p class="stat-value">$45,231.89</p>
+          <p class="stat-change positive">+20.1% from last month</p>
+        </div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-header">
+          <h3>Subscriptions</h3>
+        </div>
+        <div class="stat-content">
+          <p class="stat-value">+2,350</p>
+          <p class="stat-change positive">+180.1% from last month</p>
+        </div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-header">
+          <h3>Sales</h3>
+        </div>
+        <div class="stat-content">
+          <p class="stat-value">+12,234</p>
+          <p class="stat-change positive">+19% from last month</p>
+        </div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-header">
+          <h3>Active Users</h3>
+        </div>
+        <div class="stat-content">
+          <p class="stat-value">+573</p>
+          <p class="stat-change positive">+201 since last hour</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="dashboard-charts">
+      <div class="chart-card large">
+        <div class="card-header">
+          <h3>Overview</h3>
+          <p>View your dashboard statistics over time.</p>
+        </div>
+        <div class="card-content chart-placeholder">
+          Chart Placeholder
+        </div>
+      </div>
+      
+      <div class="chart-card">
+        <div class="card-header">
+          <h3>Recent Activities</h3>
+          <p>Your recent activities and notifications.</p>
+        </div>
+        <div class="card-content">
+          <div class="activity-list">
+            <div class="activity-item" *ngFor="let i of [1, 2, 3, 4, 5]">
+              <div class="activity-icon"></div>
+              <div class="activity-details">
+                <p class="activity-title">Activity {{i}}</p>
+                <p class="activity-time">2 hours ago</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

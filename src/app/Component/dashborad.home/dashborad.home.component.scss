@@ -1,0 +1,138 @@
+.dashboard-home {
+    width: 100%;
+  }
+  
+  .stats-cards {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+    
+    @media (min-width: 640px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  .stat-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    
+    .stat-header {
+      margin-bottom: 8px;
+      
+      h3 {
+        font-size: 14px;
+        font-weight: 500;
+        color: #6b7280;
+        margin: 0;
+      }
+    }
+    
+    .stat-content {
+      .stat-value {
+        font-size: 24px;
+        font-weight: 600;
+        margin: 0 0 4px;
+      }
+      
+      .stat-change {
+        font-size: 12px;
+        margin: 0;
+        
+        &.positive {
+          color: #10b981;
+        }
+        
+        &.negative {
+          color: #ef4444;
+        }
+      }
+    }
+  }
+  
+  .dashboard-charts {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    
+    @media (min-width: 1024px) {
+      grid-template-columns: 4fr 3fr;
+    }
+  }
+  
+  .chart-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    
+    .card-header {
+      padding: 16px;
+      border-bottom: 1px solid #f3f4f6;
+      
+      h3 {
+        font-size: 16px;
+        font-weight: 600;
+        margin: 0 0 4px;
+      }
+      
+      p {
+        font-size: 12px;
+        color: #6b7280;
+        margin: 0;
+      }
+    }
+    
+    .card-content {
+      padding: 16px;
+      
+      &.chart-placeholder {
+        height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f9fafb;
+        color: #9ca3af;
+        font-size: 14px;
+      }
+    }
+  }
+  
+  .activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    
+    .activity-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      
+      .activity-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-color: #f3f4f6;
+      }
+      
+      .activity-details {
+        .activity-title {
+          font-size: 14px;
+          font-weight: 500;
+          margin: 0 0 2px;
+        }
+        
+        .activity-time {
+          font-size: 12px;
+          color: #9ca3af;
+          margin: 0;
+        }
+      }
+    }
+  }
