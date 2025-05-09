@@ -1,0 +1,53 @@
+
+<h2>Unit Wise Overdue Recovery Updates {{currentDateTime}}</h2>
+
+<table border="1" width="100%" style="text-align: center;">
+    <thead>
+      <tr>
+        <th>RMBH</th>
+        <th>Funder</th>
+        <th>State</th>
+        <th>Unit</th>
+        <th>Visited</th>
+        <th>Reduced</th>
+        <th>%</th>
+        <th>Collected</th>
+        <th>%</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let group of getGroupedRecords | keyvalue">
+        <tr *ngFor="let r of group.value">
+          <td>{{ r.bh }}</td>
+          <td>{{ r.funder }}</td>
+          <td>{{ r.state }}</td>
+          <td>{{ r.unit }}</td>
+          <td>{{ r.visited_Clients }}</td>
+          <td>{{ r.reduced }}</td>
+          <td>{{ r.reducedPercent }}</td>
+          <td>{{ r.collected }}</td>
+          <td>{{ r.collectedPercent }}</td>
+          <td>{{ r.collected_Amount }}</td>
+        </tr>
+        <tr style="font-weight: bold; background: #e6f7ff;">
+          <td colspan="4">{{ group.key }} Total</td>
+          <td>{{ getGroupTotal(group.value).visited }}</td>
+          <td>{{ getGroupTotal(group.value).reduced }}</td>
+          <td>{{getGroupTotal(group.value).reducedPercent}}</td>
+          <td>{{ getGroupTotal(group.value).collected }}</td>
+          <td>{{getGroupTotal(group.value).collectedPercent}}</td>
+          <td>{{ getGroupTotal(group.value).collectedAmount| number }}</td>
+        </tr>
+      </ng-container>
+      <tr style="font-weight: bold; background: #c8e6c9;">
+        <td colspan="4">Grand Total</td>
+        <td>{{ getGrandTotal.visited }}</td>
+        <td>{{ getGrandTotal.reduced }}</td>
+        <td>{{getGrandTotal.reducedPercent}}</td>
+        <td>{{ getGrandTotal.collected }}</td>
+        <td>{{getGrandTotal.collectedPercent}}</td>
+        <td>{{ getGrandTotal.collectedAmount | number }}</td>
+      </tr>
+    </tbody>
+  </table>

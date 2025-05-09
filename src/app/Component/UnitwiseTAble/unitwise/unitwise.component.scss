@@ -1,0 +1,48 @@
+
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+thead {
+  background-color: #c7e7ff;
+}
+
+th, td {
+  border: 1px solid #aaa;
+  padding: 8px;
+  text-align: center;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.total-row {
+  font-weight: bold;
+  background-color: #e6f7ff;
+}
+
+.highlight {
+  background-color: #fce4ec;
+}
+
+.right-align {
+  text-align: right;
+}
+
+.footer {
+  margin-top: 15px;
+  font-weight: bold;
+}

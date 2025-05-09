@@ -1,0 +1,23 @@
+export class UserDetails
+{
+    id:string;
+    firstName:string;
+    lastName:string;
+    email:string;
+    phone:number;
+    dateOfBirth:Date;
+    gender:string;
+    address:string;
+    city:string;
+    state:string;
+    zipCode:number;
+    country:string;
+    role:string;
+    status:string;
+    file:File;
+    createdDate:Date;
+    lastLogin:Date;
+    avatar:string;
+    ImageId:string;
+    imageUrl:string;
+}
