@@ -1,0 +1,42 @@
+<div class="loader-container" [ngClass]="{'full-screen': fullScreen}">
+  <!-- Pulse Loader -->
+  <div *ngIf="type === 'pulse'" class="loader-pulse" [ngClass]="[size, color]">
+    <div class="pulse-ring"></div>
+    <div class="pulse-core"></div>
+  </div>
+
+  <!-- Spinner Loader -->
+  <div *ngIf="type === 'spinner'" class="loader-spinner" [ngClass]="[size, color]">
+    <svg viewBox="0 0 50 50">
+      <circle cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+    </svg>
+  </div>
+
+  <!-- Dots Loader -->
+  <div *ngIf="type === 'dots'" class="loader-dots" [ngClass]="[size, color]">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+
+  <!-- Progress Loader -->
+  <div *ngIf="type === 'progress'" class="loader-progress" [ngClass]="[size, color]">
+    <div class="progress-bar">
+      <div class="progress-fill" [style.width.%]="progress"></div>
+    </div>
+    <div *ngIf="progress > 0" class="progress-text">{{progress}}%</div>
+  </div>
+
+  <!-- Skeleton Loader -->
+  <div *ngIf="type === 'skeleton'" class="loader-skeleton" [ngClass]="[size, color]">
+    <div class="skeleton-line"></div>
+    <div class="skeleton-line"></div>
+    <div class="skeleton-line"></div>
+  </div>
+
+  <!-- Loader Text -->
+  <div *ngIf="text" class="loader-text" [ngClass]="[size, color]">
+    {{ text }}
+  </div>
+</div>

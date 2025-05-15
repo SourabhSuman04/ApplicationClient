@@ -3,10 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
+import { ButtonLoaderComponent } from '../../loaders/button-loader/button-loader.component';
+import { LoaderService } from '../../service/loader.service';
 
 @Component({
   selector: 'app-usersign',
-  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule,ButtonLoaderComponent],
   templateUrl: './usersign.component.html',
   styleUrl: './usersign.component.scss'
 })
@@ -14,11 +16,13 @@ export class UsersignComponent  implements OnInit {
   signinForm: FormGroup;
   submitted = false;
   showPassword = false;
+  isLoading: false;
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private auth:AuthService
+    private auth:AuthService,
+    private loader:LoaderService
   ) { }
 
   ngOnInit(): void {
@@ -37,6 +41,8 @@ export class UsersignComponent  implements OnInit {
   }
 
   onSubmit(): void {
+this.loader.startLoader()
+console.log(this.isLoading)
     this.submitted = true;
 
     // Stop here if form is invalid
@@ -50,6 +56,7 @@ export class UsersignComponent  implements OnInit {
 
 
     this.auth.signin(this.signinForm.value).subscribe((res:any)=>{
+      this.loader.stopLoader()
       alert(res.message)
       localStorage.setItem('name',res.data.username)
       localStorage.setItem('email',res.data.email)

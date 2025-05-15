@@ -1,0 +1,51 @@
+<div class="user-details-container">
+  <div class="form-card">
+    <!-- <div class="form-header">
+      <h2>{{ isEditMode ? 'Edit User Details' : 'Add New User' }}</h2>
+      <p>{{ isEditMode ? 'Update user information' : 'Enter user details to create a new account' }}</p>
+    </div> -->
+
+    <!-- <form [formGroup]="userForm" (ngSubmit)="onSubmit()"> -->
+      <div class="form-section">
+        <h3>Upload ODNPA Sheet</h3>
+
+        
+        <!-- <div class="form-row">
+          <div class="form-group">
+          
+            <label for="file">Upload Excel</label>
+            <!-- <app-loader *ngIf="isLoading" [type]="'progress'" [progress]="uploadProgress" [text]="'Uploading file...'">
+            </app-loader> --
+         <input type="file" (change)="onFileSelected($event)" accept=".xlsx" />
+          </div>
+        </div> -->
+<div class="container">
+  <div class="folder">
+    <div class="front-side">
+      <div class="tip"></div>
+      <div class="cover"></div>
+    </div>
+    <div class="back-side cover"></div>
+  </div>
+  <label class="custom-file-upload">
+       <!-- <app-loader *ngIf="isLoading" [type]="'progress'" [progress]="isLoading" [text]="'Uploading file...'">
+            </app-loader> -->
+      <input type="file" (change)="onFileSelected($event)" accept=".xlsx" />
+    Choose a file
+  </label>
+</div>
+
+
+
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn btn-outline" >Cancel</button>
+        <button type="submit" class="btn btn-primary" (click)="upload()">
+          <app-button-loader *ngIf="isLoading"></app-button-loader>
+          <span *ngIf="!isLoading">Upload   </span>
+          </button> 
+      </div>
+    <!-- </form> -->
+  </div>
+</div>

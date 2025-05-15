@@ -1,0 +1,208 @@
+@mixin skeleton-animation {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+.card-skeleton {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 20px;
+  
+  // Common skeleton elements
+  .skeleton-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    
+    .skeleton-title {
+      height: 20px;
+      width: 120px;
+      border-radius: 4px;
+      @include skeleton-animation;
+    }
+    
+    .skeleton-actions {
+      height: 32px;
+      width: 80px;
+      border-radius: 6px;
+      @include skeleton-animation;
+    }
+    
+    .skeleton-search {
+      height: 36px;
+      width: 200px;
+      border-radius: 6px;
+      @include skeleton-animation;
+    }
+  }
+  
+  // Stat Card Skeleton
+  &.stat {
+    .skeleton-content {
+      .skeleton-value {
+        height: 36px;
+        width: 100px;
+        border-radius: 4px;
+        margin-bottom: 12px;
+        @include skeleton-animation;
+      }
+      
+      .skeleton-subtitle {
+        height: 16px;
+        width: 80px;
+        border-radius: 4px;
+        @include skeleton-animation;
+      }
+    }
+  }
+  
+  // Chart Card Skeleton
+  &.chart {
+    .skeleton-chart {
+      height: 240px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      @include skeleton-animation;
+    }
+    
+    .skeleton-legend {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      
+      .skeleton-legend-item {
+        height: 16px;
+        width: 60px;
+        border-radius: 4px;
+        @include skeleton-animation;
+      }
+    }
+  }
+  
+  // Table Card Skeleton
+  &.table {
+    .skeleton-table {
+      margin-bottom: 20px;
+      
+      .skeleton-row {
+        height: 48px;
+        border-radius: 4px;
+        margin-bottom: 8px;
+        @include skeleton-animation;
+        
+        &.header {
+          height: 40px;
+          opacity: 0.7;
+        }
+      }
+    }
+    
+    .skeleton-footer {
+      height: 36px;
+      border-radius: 4px;
+      @include skeleton-animation;
+    }
+  }
+  
+  // Profile Card Skeleton
+  &.profile {
+    .skeleton-profile-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 24px;
+      
+      .skeleton-avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-right: 20px;
+        @include skeleton-animation;
+      }
+      
+      .skeleton-profile-info {
+        flex: 1;
+        
+        .skeleton-name {
+          height: 24px;
+          width: 150px;
+          border-radius: 4px;
+          margin-bottom: 8px;
+          @include skeleton-animation;
+        }
+        
+        .skeleton-email {
+          height: 16px;
+          width: 200px;
+          border-radius: 4px;
+          margin-bottom: 12px;
+          @include skeleton-animation;
+        }
+        
+        .skeleton-badges {
+          height: 24px;
+          width: 120px;
+          border-radius: 12px;
+          @include skeleton-animation;
+        }
+      }
+    }
+    
+    .skeleton-profile-content {
+      .skeleton-section {
+        height: 20px;
+        width: 100px;
+        border-radius: 4px;
+        margin-bottom: 16px;
+        @include skeleton-animation;
+      }
+      
+      .skeleton-items {
+        .skeleton-item {
+          height: 36px;
+          border-radius: 4px;
+          margin-bottom: 12px;
+          @include skeleton-animation;
+        }
+      }
+    }
+  }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .card-skeleton {
+    background-color: #1f2937;
+    
+    .skeleton-header .skeleton-title,
+    .skeleton-header .skeleton-actions,
+    .skeleton-header .skeleton-search,
+    .skeleton-content .skeleton-value,
+    .skeleton-content .skeleton-subtitle,
+    .skeleton-chart,
+    .skeleton-legend .skeleton-legend-item,
+    .skeleton-table .skeleton-row,
+    .skeleton-footer,
+    .skeleton-profile-header .skeleton-avatar,
+    .skeleton-profile-info .skeleton-name,
+    .skeleton-profile-info .skeleton-email,
+    .skeleton-profile-info .skeleton-badges,
+    .skeleton-profile-content .skeleton-section,
+    .skeleton-profile-content .skeleton-items .skeleton-item {
+      background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+      background-size: 200% 100%;
+    }
+  }
+}

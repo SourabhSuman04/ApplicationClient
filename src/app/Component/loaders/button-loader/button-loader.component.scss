@@ -1,0 +1,63 @@
+.button-loader {
+  display: inline-flex;
+  align-items: center;
+  
+  .dot {
+    border-radius: 50%;
+    animation: button-loader-bounce 1.4s infinite ease-in-out both;
+    
+    &:not(:last-child) {
+      margin-right: 4px;
+    }
+    
+    &:nth-child(1) {
+      animation-delay: -0.32s;
+    }
+    
+    &:nth-child(2) {
+      animation-delay: -0.16s;
+    }
+  }
+  
+  &.sm {
+    .dot {
+      width: 4px;
+      height: 4px;
+    }
+  }
+  
+  &.md {
+    .dot {
+      width: 6px;
+      height: 6px;
+    }
+  }
+  
+  &.lg {
+    .dot {
+      width: 8px;
+      height: 8px;
+    }
+  }
+  
+  &.light {
+    .dot {
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+  }
+  
+  &.dark {
+    .dot {
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+  }
+}
+
+@keyframes button-loader-bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}

@@ -3,10 +3,13 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../../service/user.service';
+import { ButtonLoaderComponent } from '../../loaders/button-loader/button-loader.component';
+import { LoaderComponent } from '../../loaders/loader/loader.component';
+import { LoaderService } from '../../service/loader.service';
 
 @Component({
   selector: 'app-userform',
-  imports: [CommonModule,FormsModule,ReactiveFormsModule],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule,ButtonLoaderComponent,LoaderComponent],
   templateUrl: './userform.component.html',
   styleUrl: './userform.component.scss'
 })
@@ -14,14 +17,18 @@ export class UserformComponent implements OnInit {
   @Input() userId: string;
   userForm: FormGroup;
   submitted = false;
+  isSubmitting=false
   isEditMode = false;
   selectedFile: File | null = null;
+  uploadProgress: number;
+  isLoading: false;
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private userservice: UserService
+    private userservice: UserService,
+    private loader:LoaderService
   ) {}
 
   ngOnInit(): void {
@@ -58,7 +65,9 @@ export class UserformComponent implements OnInit {
   }
 
   loadUserData(userId: string): void {
+    this.loader.startLoader()
     this.userservice.getUsersDetailsbyid(userId).subscribe((res: any) => {
+      this.loader.stopLoader()
       const user = res.data;
       this.userForm.patchValue({
         firstName: user.firstName,
@@ -86,6 +95,7 @@ export class UserformComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.loader.startLoader();
     this.submitted = true;
 
     if (this.userForm.invalid || !this.selectedFile) {
@@ -112,6 +122,7 @@ export class UserformComponent implements OnInit {
     // Call service
     this.userservice.Addorupdate(formData).subscribe(
       (res: any) => {
+        this.loader.stopLoader();
         alert(res.message);
         this.router.navigate(['/dashboard/usertable']);
       },

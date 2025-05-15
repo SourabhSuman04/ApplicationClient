@@ -5,7 +5,7 @@
   </button>
 </div>
 </div>
-<h2>{{'Unit Wise Overdue recovery Updates'| titlecase }} {{currentDateTime }}</h2>
+<h2>{{'XBucket Unit Wise Overdue recovery Updates'| titlecase }} {{currentDateTime }}</h2>
 
 <table border="1" width="100%" style="text-align: center;">
     <thead>
@@ -34,10 +34,23 @@
             <i class="fas" [ngClass]="getSortIcon('unit')"></i>
           </div>
         </th>
+            <th>
+            <div class="th-content" (click)="sortBy('x_Bucket_flow_clients')">
+            X Bucket flow clients
+            <i class="fas" [ngClass]="getSortIcon('x_Bucket_flow_clients')"></i>
+          </div>
+        </th>
         <th>
-            <div class="th-content" (click)="sortBy('visited_Clients')">
-            Visited_Clients
-            <i class="fas" [ngClass]="getSortIcon('visited_Clients')"></i>
+            <div class="th-content" (click)="sortBy('visitsonXbucket')">
+            visitsonXbucket
+            <i class="fas" [ngClass]="getSortIcon('visitsonXbucket')"></i>
+          </div>
+        </th>
+      
+          <th>
+            <div class="th-content" (click)="sortBy('uniqueVisitsonXbucket')">
+                uniqueVisitsonXbucket
+            <i class="fas" [ngClass]="getSortIcon('uniqueVisitsonXbucket')"></i>
           </div>
         </th>
         <th>
@@ -79,16 +92,20 @@
           <td>{{ r.funder }}</td>
           <td>{{ r.state }}</td>
           <td>{{ r.unit }}</td>
-          <td>{{ r.visited_Clients }}</td>
+          <td>{{ r.x_Bucket_flow_clients }}</td>
+          <td>{{ r.visitsonXbucket }}</td>
+          <td>{{ r.uniqueVisitsonXbucket }}</td>
           <td>{{ r.reduced }}</td>
           <td>{{ r.reducedPercent }}</td>
           <td>{{ r.collected }}</td>
           <td>{{ r.collectedPercent }}</td>
-          <td>{{ r.collected_Amount | currency: 'INR' }}</td>
+          <td>{{ r.collectedAmount| currency: 'INR' }}</td>
         </tr>
         <tr style="font-weight: bold; background: #e6f7ff;">
           <td colspan="4">{{ group.key }} Total</td>
-          <td>{{ getGroupTotal(group.value).visited }}</td>
+          <td>{{ getGroupTotal(group.value).x_Bucket_flow_clients }}</td>
+          <td>{{ getGroupTotal(group.value).visitsonXbucket }}</td>
+          <td>{{ getGroupTotal(group.value).uniqueVisitsonXbucket}}</td>
           <td>{{ getGroupTotal(group.value).reduced }}</td>
           <td>{{getGroupTotal(group.value).reducedPercent}}</td>
           <td>{{ getGroupTotal(group.value).collected }}</td>
@@ -98,7 +115,9 @@
       </ng-container>
       <tr style="font-weight: bold; background: #c8e6c9;">
         <td colspan="4">Grand Total</td>
-        <td>{{ getGrandTotal.visited }}</td>
+        <td>{{ getGrandTotal.x_Bucket_flow_clients }}</td>
+        <td>{{ getGrandTotal.visitsonXbucket}}</td>
+        <td>{{ getGrandTotal.uniqueVisitsonXbucket}}</td>
         <td>{{ getGrandTotal.reduced }}</td>
         <td>{{getGrandTotal.reducedPercent}}</td>
         <td>{{ getGrandTotal.collected }}</td>

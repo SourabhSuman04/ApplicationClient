@@ -1,0 +1,62 @@
+<div *ngIf="isLoading" class="card-skeleton" [ngClass]="type">
+  <!-- Stat Card Skeleton -->
+  <ng-container *ngIf="type === 'stat'">
+    <div class="skeleton-header">
+      <div class="skeleton-title"></div>
+    </div>
+    <div class="skeleton-content">
+      <div class="skeleton-value"></div>
+      <div class="skeleton-subtitle"></div>
+    </div>
+  </ng-container>
+  
+  <!-- Chart Card Skeleton -->
+  <ng-container *ngIf="type === 'chart'">
+    <div class="skeleton-header">
+      <div class="skeleton-title"></div>
+      <div class="skeleton-actions"></div>
+    </div>
+    <div class="skeleton-chart"></div>
+    <div class="skeleton-legend">
+      <div class="skeleton-legend-item"></div>
+      <div class="skeleton-legend-item"></div>
+      <div class="skeleton-legend-item"></div>
+    </div>
+  </ng-container>
+  
+  <!-- Table Card Skeleton -->
+  <ng-container *ngIf="type === 'table'">
+    <div class="skeleton-header">
+      <div class="skeleton-title"></div>
+      <div class="skeleton-search"></div>
+    </div>
+    <div class="skeleton-table">
+      <div class="skeleton-row header"></div>
+      <div class="skeleton-row"></div>
+      <div class="skeleton-row"></div>
+      <div class="skeleton-row"></div>
+      <div class="skeleton-row"></div>
+    </div>
+    <div class="skeleton-footer"></div>
+  </ng-container>
+  
+  <!-- Profile Card Skeleton -->
+  <ng-container *ngIf="type === 'profile'">
+    <div class="skeleton-profile-header">
+      <div class="skeleton-avatar"></div>
+      <div class="skeleton-profile-info">
+        <div class="skeleton-name"></div>
+        <div class="skeleton-email"></div>
+        <div class="skeleton-badges"></div>
+      </div>
+    </div>
+    <div class="skeleton-profile-content">
+      <div class="skeleton-section"></div>
+      <div class="skeleton-items">
+        <div class="skeleton-item"></div>
+        <div class="skeleton-item"></div>
+        <div class="skeleton-item"></div>
+      </div>
+    </div>
+  </ng-container>
+</div>

@@ -12,4 +12,9 @@ export class UnitwiseService {
   getAllRecords(){
     return this.http.get(environment.baseurl+'UnitWise/GetAllUnitWiseRecords')
   }
+
+  getXBucketAllRecords()
+  {
+    return this.http.get(environment.baseurl+"UnitWise/GetAllXbucketUnitWiseRecords")
+  }
 }

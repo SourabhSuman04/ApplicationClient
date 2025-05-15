@@ -1,0 +1,125 @@
+ <div class="form-actions" style="display: flex; justify-content: space-evenly;">
+ <div *ngFor="let btn of buttons">
+  <button class="btn btn-primary" (click)="navigate(btn.route)">
+    {{ btn.label }}
+  </button>
+</div>
+</div>
+
+<h2>{{'State Wise Overdue recovery Updates'| titlecase }} {{currentDateTime}}</h2>
+
+<table border="1" width="100%" style="text-align: center;">
+    <thead>
+      <tr>
+        <th>
+          <div class="th-content" (click)="sortBy('bh')">
+            RMBH
+            <i class="fas" [ngClass]="getSortIcon('bh')"></i>
+          </div>
+        </th>
+        <th>
+          <div class="th-content" (click)="sortBy('funder')">
+            Funder
+            <i class="fas" [class]="getSortIcon('funder')"></i>
+          </div>
+        </th>
+        <th>
+          <div class="th-content" (click)="sortBy('state')">
+            State
+            <i class="fas" [ngClass]="getSortIcon('state')"></i>
+          </div>
+        </th>
+        <th>
+            <div class="th-content" (click)="sortBy('x_Bucket_flow_clients')">
+            x_Bucket_flow_clients
+            <i class="fas" [ngClass]="getSortIcon('x_Bucket_flow_clients')"></i>
+          </div>
+        </th>
+        <th>
+            <div class="th-content" (click)="sortBy('visitsonXbucket')">
+            visitsonXbucket
+            <i class="fas" [ngClass]="getSortIcon('visitsonXbucket')"></i>
+          </div>
+        </th>
+        <th>
+            <div class="th-content" (click)="sortBy('uniqueVisitsonXbucket')">
+            uniqueVisitsonXbucket
+            <i class="fas" [ngClass]="getSortIcon('uniqueVisitsonXbucket')"></i>
+          </div>
+        </th>
+        <th>
+            <div class="th-content" (click)="sortBy('reduced')">
+            Reduced
+            <i class="fas" [ngClass]="getSortIcon('reduced')"></i>
+          </div>
+        </th>
+        <th>
+            <div class="th-content" (click)="sortBy('reducedPercent')">
+            %
+            <i class="fas" [ngClass]="getSortIcon('reducedPercent')"></i>
+          </div>
+        </th>
+        <th>
+            <div class="th-content" (click)="sortBy('collected')">
+            Collected
+            <i class="fas" [ngClass]="getSortIcon('collected')"></i>
+          </div>
+        </th>
+        <th>
+            <div class="th-content" (click)="sortBy('collectedPercent')">
+            %
+            <i class="fas" [ngClass]="getSortIcon('collectedPercent')"></i>
+          </div>
+        </th>
+        <th>
+            <div class="th-content" (click)="sortBy('collected_Amount')">
+            Amount
+            <i class="fas" [ngClass]="getSortIcon('Amount')"></i>
+          </div>
+        </th>
+      </tr>
+    </thead>
+<tbody>
+  <ng-container *ngFor="let bh of groupedKeys">
+    <ng-container *ngFor="let rec of groupedRecords[bh]">
+      <tr>
+        <td>{{ bh }}</td>
+        <td>{{ rec.funder }}</td>
+        <td>{{ rec.state }}</td>
+        <td>{{ rec.x_Bucket_flow_clients }}</td>
+        <td>{{ rec.visitsonXbucket }}</td>
+        <td>{{ rec.uniqueVisitsonXbucket }}</td>
+        <td>{{ rec.reduced }}</td>
+        <td>{{ rec.reducedPercent }}</td>
+        <td>{{ rec.collected }}</td>
+        <td>{{ rec.collectedPercent }}</td>
+        <td>{{ rec.collected_Amount | number: '.2-2'}}</td>
+      </tr>
+    </ng-container>
+    <tr style="font-weight: bold; background-color: #dff0d8">
+      <td colspan="3">{{ bh }} Total</td>
+      <td>{{ getGroupTotal(groupedRecords[bh]).x_Bucket_flow_clients }}</td>
+      <td>{{ getGroupTotal(groupedRecords[bh]).visitsonXbucket }}</td>
+      <td>{{ getGroupTotal(groupedRecords[bh]).uniqueVisitsonXbucket }}</td>
+      <td>{{ getGroupTotal(groupedRecords[bh]).reduced }}</td>
+      <td>{{ getGroupTotal(groupedRecords[bh]).reducedPercent }}</td>
+      <td>{{ getGroupTotal(groupedRecords[bh]).collected }}</td>
+      <td>{{ getGroupTotal(groupedRecords[bh]).collectedPercent }}</td>
+      <td>{{ getGroupTotal(groupedRecords[bh]).collectedAmount  | number: '.2-2'}}</td>
+    </tr>
+  </ng-container>
+
+  <!-- Grand Total -->
+  <tr style="font-weight: bold; background-color: #f9f9f9">
+    <td colspan="3">Grand Total</td>
+    <td>{{ getGrandTotal.x_Bucket_flow_clients }}</td>
+    <td>{{ getGrandTotal.visitsonXbucket }}</td>
+    <td>{{ getGrandTotal.uniqueVisitsonXbucket }}</td>
+    <td>{{ getGrandTotal.reduced }}</td>
+    <td>{{ getGrandTotal.reducedPercent }}</td>
+    <td>{{ getGrandTotal.collected }}</td>
+    <td>{{ getGrandTotal.collectedPercent }}</td>
+    <td>{{ getGrandTotal.collectedAmount  | number: '.2-2'}}</td>
+  </tr>
+</tbody>
+</table>

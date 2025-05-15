@@ -6,8 +6,10 @@ import { filter } from 'rxjs';
 
 interface NavItem {
   label: string;
-  route: string;
-  icon: string;
+  route?: string;
+  icon?: string;
+   expanded?: boolean;
+  children?: NavItem[];
 }
 
 
@@ -25,13 +27,20 @@ export class SidebarComponent implements OnInit {
   email=localStorage.getItem('email');
   
   currentRoute = 'dashboard';
-  
+
   navigationItems: NavItem[] = [
-    { label: 'home', route: 'home', icon: 'fas fa-shopping-cart' },
+    { label: 'Home', route: 'home', icon: 'fas fa-solid fa-house' },
     { label: 'Dashboard', route: 'dashboardhome', icon: 'fas fa-th-large' },
     { label: 'Users', route: 'usertable', icon: 'fas fa-users' },
-   
-    { label: 'Analytics', route: 'unitwise', icon: 'fas fa-chart-bar' },
+    { label: 'Analytics',  icon: 'fas fa-chart-bar' , expanded: false,
+      children: [
+        { label: 'UnitWiseRecords', route: 'unitwise'  },
+        {
+          label: 'ODNPA Upload', route: 'odnpaupload',
+        },
+      ]
+     },
+    // { label: 'Analytics', route: 'unitwise', icon: 'fas fa-chart-bar' },
     { label: 'Settings', route: 'settings', icon: 'fas fa-cog' }
   ];
   
@@ -47,13 +56,13 @@ export class SidebarComponent implements OnInit {
     });
   }
   
-  onToggleSidebar(): void {
-    this.toggleSidebar.emit();
-  }
+  // onToggleSidebar(): void {
+  //   this.toggleSidebar.emit();
+  // }
   
-  navigateTo(route: string): void {
-    this.router.navigate(['/dashboard', route]);
-  }
+  // navigateTo(route: string): void {
+  //   this.router.navigate(['/dashboard', route]);
+  // }
 
   logout()
   {
@@ -61,5 +70,20 @@ export class SidebarComponent implements OnInit {
     localStorage.clear();
     this.router.navigate(['signin'])
   }
-
+  
+  onToggleSidebar(): void {
+    this.toggleSidebar.emit();
+  }
+  
+  navigateTo(route?: string): void {
+    if (!route) return;
+    console.log('/dashboard',route)
+    // your routing logic, e.g.:
+    this.router.navigate(['/dashboard',route]);
+  }
+  
+  toggleDropdown(item: NavItem): void {
+    item.expanded = !item.expanded;
+  }
+  
 }

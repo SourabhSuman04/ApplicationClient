@@ -1,11 +1,14 @@
- <div class="form-actions" style="display: flex; justify-content: space-evenly;">
- <div *ngFor="let btn of buttons">
+<div style="
+    display: flex;
+    justify-content: space-evenly;
+">
+<div class="form-actions" *ngFor="let btn of buttons">
   <button class="btn btn-primary" (click)="navigate(btn.route)">
     {{ btn.label }}
   </button>
 </div>
-</div>
-<h2>{{'Unit Wise Overdue recovery Updates'| titlecase }} {{currentDateTime }}</h2>
+</div> 
+<h2>{{'State Wise Overdue recovery Updates'| titlecase }} {{currentDateTime}}</h2>
 
 <table border="1" width="100%" style="text-align: center;">
     <thead>
@@ -26,12 +29,6 @@
           <div class="th-content" (click)="sortBy('state')">
             State
             <i class="fas" [ngClass]="getSortIcon('state')"></i>
-          </div>
-        </th>
-        <th>
-            <div class="th-content" (click)="sortBy('unit')">
-            Unit
-            <i class="fas" [ngClass]="getSortIcon('unit')"></i>
           </div>
         </th>
         <th>
@@ -72,38 +69,41 @@
         </th>
       </tr>
     </thead>
-    <tbody>
-      <ng-container *ngFor="let group of getGroupedRecords | keyvalue">
-        <tr *ngFor="let r of group.value">
-          <td>{{ r.bh }}</td>
-          <td>{{ r.funder }}</td>
-          <td>{{ r.state }}</td>
-          <td>{{ r.unit }}</td>
-          <td>{{ r.visited_Clients }}</td>
-          <td>{{ r.reduced }}</td>
-          <td>{{ r.reducedPercent }}</td>
-          <td>{{ r.collected }}</td>
-          <td>{{ r.collectedPercent }}</td>
-          <td>{{ r.collected_Amount | currency: 'INR' }}</td>
-        </tr>
-        <tr style="font-weight: bold; background: #e6f7ff;">
-          <td colspan="4">{{ group.key }} Total</td>
-          <td>{{ getGroupTotal(group.value).visited }}</td>
-          <td>{{ getGroupTotal(group.value).reduced }}</td>
-          <td>{{getGroupTotal(group.value).reducedPercent}}</td>
-          <td>{{ getGroupTotal(group.value).collected }}</td>
-          <td>{{getGroupTotal(group.value).collectedPercent }}</td>
-          <td>{{ getGroupTotal(group.value).collectedAmount| currency: 'INR'  }}</td>
-        </tr>
-      </ng-container>
-      <tr style="font-weight: bold; background: #c8e6c9;">
-        <td colspan="4">Grand Total</td>
-        <td>{{ getGrandTotal.visited }}</td>
-        <td>{{ getGrandTotal.reduced }}</td>
-        <td>{{getGrandTotal.reducedPercent}}</td>
-        <td>{{ getGrandTotal.collected }}</td>
-        <td>{{getGrandTotal.collectedPercent}}</td>
-        <td>{{ getGrandTotal.collectedAmount | currency: 'INR'  }}</td>
+<tbody>
+  <ng-container *ngFor="let bh of groupedKeys">
+    <ng-container *ngFor="let rec of groupedRecords[bh]">
+      <tr>
+        <td>{{ bh }}</td>
+        <td>{{ rec.funder }}</td>
+        <td>{{ rec.state }}</td>
+        <td>{{ rec.visited_Clients }}</td>
+        <td>{{ rec.reduced }}</td>
+        <td>{{ rec.reducedPercent }}</td>
+        <td>{{ rec.collected }}</td>
+        <td>{{ rec.collectedPercent }}</td>
+        <td>{{ rec.collected_Amount | number: '.2-2'}}</td>
       </tr>
-    </tbody>
-  </table>
+    </ng-container>
+    <tr style="font-weight: bold; background-color: #dff0d8">
+      <td colspan="3">{{ bh }} Total</td>
+      <td>{{ getGroupTotal(groupedRecords[bh]).visited }}</td>
+      <td>{{ getGroupTotal(groupedRecords[bh]).reduced }}</td>
+      <td>{{ getGroupTotal(groupedRecords[bh]).reducedPercent }}</td>
+      <td>{{ getGroupTotal(groupedRecords[bh]).collected }}</td>
+      <td>{{ getGroupTotal(groupedRecords[bh]).collectedPercent }}</td>
+      <td>{{ getGroupTotal(groupedRecords[bh]).collectedAmount  | number: '.2-2'}}</td>
+    </tr>
+  </ng-container>
+
+  <!-- Grand Total -->
+  <tr style="font-weight: bold; background-color: #f9f9f9">
+    <td colspan="3">Grand Total</td>
+    <td>{{ getGrandTotal.visited }}</td>
+    <td>{{ getGrandTotal.reduced }}</td>
+    <td>{{ getGrandTotal.reducedPercent }}</td>
+    <td>{{ getGrandTotal.collected }}</td>
+    <td>{{ getGrandTotal.collectedPercent }}</td>
+    <td>{{ getGrandTotal.collectedAmount  | number: '.2-2'}}</td>
+  </tr>
+</tbody>
+</table>

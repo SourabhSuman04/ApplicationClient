@@ -1,0 +1,174 @@
+.dashboard-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  
+  &.full-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.98);
+    z-index: 9999;
+    backdrop-filter: blur(8px);
+  }
+  
+  .loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .loader-logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 2rem;
+    
+    .logo-svg {
+      width: 100%;
+      height: 100%;
+      
+      .logo-path {
+        fill: #6366f1;
+        animation: logo-pulse 3s infinite ease-in-out;
+      }
+    }
+  }
+  
+  .loader-text {
+    margin-top: 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #4b5563;
+    letter-spacing: 0.05em;
+    animation: text-fade 2s infinite;
+  }
+  
+  // Hexagon Loader
+  .hexagon-loader {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    
+    .hexagon {
+      position: absolute;
+      width: 40px;
+      height: 23px;
+      background-color: #6366f1;
+      opacity: 0;
+      
+      &:before,
+      &:after {
+        content: "";
+        position: absolute;
+        width: 0;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+      }
+      
+      &:before {
+        bottom: 100%;
+        border-bottom: 11.5px solid #6366f1;
+      }
+      
+      &:after {
+        top: 100%;
+        border-top: 11.5px solid #6366f1;
+      }
+      
+      &.hex1 {
+        top: 0;
+        left: 40px;
+        animation: hex-fade 1.5s infinite ease-in-out;
+        animation-delay: 0s;
+      }
+      
+      &.hex2 {
+        top: 20px;
+        left: 80px;
+        animation: hex-fade 1.5s infinite ease-in-out;
+        animation-delay: 0.2s;
+      }
+      
+      &.hex3 {
+        top: 60px;
+        left: 80px;
+        animation: hex-fade 1.5s infinite ease-in-out;
+        animation-delay: 0.4s;
+      }
+      
+      &.hex4 {
+        top: 80px;
+        left: 40px;
+        animation: hex-fade 1.5s infinite ease-in-out;
+        animation-delay: 0.6s;
+      }
+      
+      &.hex5 {
+        top: 60px;
+        left: 0;
+        animation: hex-fade 1.5s infinite ease-in-out;
+        animation-delay: 0.8s;
+      }
+      
+      &.hex6 {
+        top: 20px;
+        left: 0;
+        animation: hex-fade 1.5s infinite ease-in-out;
+        animation-delay: 1s;
+      }
+      
+      &.hex7 {
+        top: 40px;
+        left: 40px;
+        animation: hex-fade 1.5s infinite ease-in-out;
+        animation-delay: 1.2s;
+      }
+    }
+  }
+}
+
+@keyframes hex-fade {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes logo-pulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes text-fade {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .dashboard-loader.full-screen {
+    background-color: rgba(17, 24, 39, 0.98);
+  }
+  
+  .loader-text {
+    color: #e5e7eb;
+  }
+}

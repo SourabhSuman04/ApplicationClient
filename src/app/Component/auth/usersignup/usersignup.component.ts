@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
+import { LoaderService } from '../../service/loader.service';
+import { ButtonLoaderComponent } from '../../loaders/button-loader/button-loader.component';
 
 export function MustMatch(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {
@@ -23,7 +25,7 @@ export function MustMatch(controlName: string, matchingControlName: string) {
 
 @Component({
   selector: 'app-usersignup',
-  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule,ButtonLoaderComponent],
   templateUrl: './usersignup.component.html',
   styleUrl: './usersignup.component.scss'
 })
@@ -31,11 +33,13 @@ export class UsersignupComponent  implements OnInit {
   signupForm: FormGroup;
   submitted = false;
   showPassword = false;
-
+  isLoading=false;
+  
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private auth:AuthService
+    private auth:AuthService,
+    private loader:LoaderService
   ) { }
 
   ngOnInit(): void {
@@ -50,7 +54,6 @@ export class UsersignupComponent  implements OnInit {
     });
   }
 
-  // Convenience getter for easy access to form fields
   get f() { return this.signupForm.controls; }
 
   togglePasswordVisibility(): void {
@@ -59,22 +62,20 @@ export class UsersignupComponent  implements OnInit {
 
   onSubmit(): void {
     this.submitted = true;
+    this.loader.startLoader();
 
-    // Stop here if form is invalid
     if (this.signupForm.invalid) {
       return;
     }
 
-    // Process signup logic here
     console.log('Form submitted:', this.signupForm.value);
     
     this.auth.signup(this.signupForm.value).subscribe((res:any)=>{
+      this.loader.stopLoader()
       alert(res.message)
-      if(res.issu)
       this.router.navigate(['signin']);
     })
 
-    // Navigate to dashboard after successful signup
-   
+
   }
 }

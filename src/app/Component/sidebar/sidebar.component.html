@@ -1,4 +1,4 @@
-<div class="sidebar" [ngClass]="{'collapsed': isCollapsed}">
+<!-- <div class="sidebar" [ngClass]="{'collapsed': isCollapsed}">
     <div class="sidebar-header">
       <div class="logo-container">
         <div class="logo">D</div>
@@ -43,6 +43,146 @@
       <div class="user-profile" [ngClass]="{'collapsed': isCollapsed}">
         <div class="avatar">
           <img src="https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg" alt="User Avatar">
+        </div>
+        <div class="user-info" *ngIf="!isCollapsed">
+          <p class="user-name">{{username}}</p>
+          <p class="user-email">{{email}}</p>
+        </div>
+      </div>
+      
+      <div class="logout-btn" [ngClass]="{'collapsed': isCollapsed}" (click)="logout()">
+        <i class="fas fa-sign-out-alt"></i>
+        <span *ngIf="!isCollapsed">Logout</span>
+      </div>
+    </div>
+  </div> -->
+
+  
+<div class="sidebar" [ngClass]="{'collapsed': isCollapsed}">
+    <div class="sidebar-header">
+      <div class="logo-container">
+        <div class="logo">D</div>
+        <h1 class="logo-text" *ngIf="!isCollapsed">Dashboard</h1>
+      </div>
+      <button class="collapse-btn" (click)="onToggleSidebar()">
+        <i class="fas" [ngClass]="isCollapsed ? 'fa-chevron-right' : 'fa-chevron-left'"></i>
+      </button>
+    </div>
+    
+    <div class="sidebar-content">
+      <div class="nav-section">
+        <p class="section-title" *ngIf="!isCollapsed">Main Menu</p>
+        <ul class="nav-menu">
+          <li *ngFor="let item of navigationItems" 
+              [ngClass]="{'active': currentRoute === item.route}"
+              (click)="navigateTo(item.route)">
+            <a class="nav-link">
+              <i class="{{item.icon}}"></i>
+              <span *ngIf="!isCollapsed">{{item.label}}</span>
+            </a>
+            <div class="tooltip" *ngIf="isCollapsed">{{item.label}}</div>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="nav-section">
+        <p class="section-title" *ngIf="!isCollapsed">Support</p>
+        <ul class="nav-menu">
+          <li (click)="navigateTo('help')">
+            <a class="nav-link">
+              <i class="fas fa-question-circle"></i>
+              <span *ngIf="!isCollapsed">Help & Documentation</span>
+            </a>
+            <div class="tooltip" *ngIf="isCollapsed">Help & Documentation</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="sidebar-footer">
+      <div class="user-profile" [ngClass]="{'collapsed': isCollapsed}">
+        <div class="avatar">
+          <img src="assets/images/user-avatar.jpg" alt="User Avatar">
+        </div>
+        <div class="user-info" *ngIf="!isCollapsed">
+          <p class="user-name">John Doe</p>
+          <p class="user-email">jo.com</p>
+        </div>
+      </div>
+      
+      <div class="logout-btn" [ngClass]="{'collapsed': isCollapsed}">
+        <i class="fas fa-sign-out-alt"></i>
+        <span *ngIf="!isCollapsed">Logout</span>
+      </div>
+    </div>
+  </div><div class="sidebar" [ngClass]="{'collapsed': isCollapsed}">
+    <div class="sidebar-header">
+      <div class="logo-container">
+        <div class="logo">D</div>
+        <h1 class="logo-text" *ngIf="!isCollapsed">Dashboard</h1>
+      </div>
+      <button class="collapse-btn" (click)="onToggleSidebar()">
+        <i class="fas" [ngClass]="isCollapsed ? 'fa-chevron-right' : 'fa-chevron-left'"></i>
+      </button>
+    </div>
+    
+
+    <div class="sidebar-content">
+      <div class="nav-section">
+        <p class="section-title" *ngIf="!isCollapsed">Main Menu</p>
+        <ul class="nav-menu">
+          <li *ngFor="let item of navigationItems">
+            <div 
+              class="nav-link" 
+              [ngClass]="{ 'active': currentRoute === item.route }"
+              (click)="item.children ? toggleDropdown(item) : navigateTo(item.route)">
+              
+              <i class="{{ item.icon }}"></i>
+              <span *ngIf="!isCollapsed">{{ item.label }}</span>
+        
+              <!-- Dropdown toggle icon -->
+              <i 
+                *ngIf="item.children && !isCollapsed" 
+                class="fas fa-chevron-down dropdown-icon"
+                [ngClass]="{ 'rotated': item.expanded }"
+              ></i>
+            </div>
+        
+            <!-- Dropdown children -->
+            <ul *ngIf="item.children && item.expanded && !isCollapsed" class="submenu">
+              <li *ngFor="let child of item.children" 
+                  [ngClass]="{'active': currentRoute === child.route}"
+                  (click)="navigateTo(child.route)">
+                <span class="nav-link child-link">{{ child.label }}</span>
+              </li>
+            </ul>
+        
+            <!-- Tooltip for collapsed sidebar -->
+            <div class="tooltip" *ngIf="isCollapsed">{{ item.label }}</div>
+          </li>
+        </ul>
+        
+      </div>
+      
+      
+      <div class="nav-section">
+        <p class="section-title" *ngIf="!isCollapsed">Support</p>
+        <ul class="nav-menu">
+          <li (click)="navigateTo('help')">
+            <a class="nav-link">
+              <i class="fas fa-question-circle"></i>
+              <span *ngIf="!isCollapsed">Help & Documentation</span>
+            </a>
+            <div class="tooltip" *ngIf="isCollapsed">Help & Documentation</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="sidebar-footer">
+      <div class="user-profile" [ngClass]="{'collapsed': isCollapsed}">
+        <div class="avatar">
+          <img src="https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg"  alt="User Avatar">
         </div>
         <div class="user-info" *ngIf="!isCollapsed">
           <p class="user-name">{{username}}</p>

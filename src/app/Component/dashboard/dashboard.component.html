@@ -1,3 +1,4 @@
+<app-dashboard-loader *ngIf="isLoading"></app-dashboard-loader>
 <div class="dashboard-container">
     <!-- Sidebar Component -->
     <app-sidebar [isCollapsed]="sidebarCollapsed" (toggleSidebar)="toggleSidebar()"></app-sidebar>
@@ -22,6 +23,12 @@
       </header>
   
       <main class="dashboard-content">
+        <app-loader 
+      *ngIf="isLoading" 
+      [type]="'spinner'" 
+      [color]="'primary'" 
+      [text]="'Loading data...'">
+    </app-loader>
         <router-outlet></router-outlet>
       </main>
     </div>

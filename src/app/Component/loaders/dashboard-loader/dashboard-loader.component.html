@@ -1,0 +1,26 @@
+<div *ngIf="isLoading" class="dashboard-loader" [ngClass]="{'full-screen': fullScreen}">
+  <div class="loader-content">
+    <!-- Logo (optional) -->
+    <div *ngIf="showLogo" class="loader-logo">
+      <svg viewBox="0 0 64 64" class="logo-svg">
+        <path class="logo-path" d="M32 2C15.432 2 2 15.432 2 32s13.432 30 30 30 30-13.432 30-30S48.568 2 32 2zm0 10a5 5 0 110 10 5 5 0 010-10zm15 35c0 1.657-1.343 3-3 3H20c-1.657 0-3-1.343-3-3v-5c0-8.284 6.716-15 15-15s15 6.716 15 15v5z" />
+      </svg>
+    </div>
+    
+    <!-- Hexagon Loader -->
+    <div class="hexagon-loader">
+      <div class="hexagon hex1"></div>
+      <div class="hexagon hex2"></div>
+      <div class="hexagon hex3"></div>
+      <div class="hexagon hex4"></div>
+      <div class="hexagon hex5"></div>
+      <div class="hexagon hex6"></div>
+      <div class="hexagon hex7"></div>
+    </div>
+    
+    <!-- Loading Text -->
+    <div *ngIf="text" class="loader-text">
+      {{ text }}
+    </div>
+  </div>
+</div>

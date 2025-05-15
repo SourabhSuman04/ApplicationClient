@@ -1,0 +1,553 @@
+// Variables
+$primary-color: #6366f1;
+$secondary-color: #10b981;
+$accent-color: #f59e0b;
+$light-color: #f3f4f6;
+
+$primary-gradient: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+$secondary-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+$accent-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+$light-gradient: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+
+// Base Loader Container
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  
+  &.full-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 9999;
+    backdrop-filter: blur(4px);
+  }
+}
+
+// Loader Text
+.loader-text {
+  margin-top: 1rem;
+  font-weight: 500;
+  text-align: center;
+  
+  &.primary {
+    color: $primary-color;
+  }
+  
+  &.secondary {
+    color: $secondary-color;
+  }
+  
+  &.accent {
+    color: $accent-color;
+  }
+  
+  &.light {
+    color: #6b7280;
+  }
+  
+  &.sm {
+    font-size: 0.75rem;
+  }
+  
+  &.md {
+    font-size: 0.875rem;
+  }
+  
+  &.lg {
+    font-size: 1rem;
+  }
+  
+  &.xl {
+    font-size: 1.25rem;
+  }
+}
+
+// Pulse Loader
+.loader-pulse {
+  position: relative;
+  
+  &.sm {
+    width: 24px;
+    height: 24px;
+    
+    .pulse-core {
+      width: 8px;
+      height: 8px;
+    }
+  }
+  
+  &.md {
+    width: 40px;
+    height: 40px;
+    
+    .pulse-core {
+      width: 12px;
+      height: 12px;
+    }
+  }
+  
+  &.lg {
+    width: 60px;
+    height: 60px;
+    
+    .pulse-core {
+      width: 16px;
+      height: 16px;
+    }
+  }
+  
+  &.xl {
+    width: 80px;
+    height: 80px;
+    
+    .pulse-core {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  
+  .pulse-ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  }
+  
+  .pulse-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    animation: pulse-core 1.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+  }
+  
+  &.primary {
+    .pulse-ring {
+      background: rgba($primary-color, 0.2);
+    }
+    
+    .pulse-core {
+      background: $primary-gradient;
+    }
+  }
+  
+  &.secondary {
+    .pulse-ring {
+      background: rgba($secondary-color, 0.2);
+    }
+    
+    .pulse-core {
+      background: $secondary-gradient;
+    }
+  }
+  
+  &.accent {
+    .pulse-ring {
+      background: rgba($accent-color, 0.2);
+    }
+    
+    .pulse-core {
+      background: $accent-gradient;
+    }
+  }
+  
+  &.light {
+    .pulse-ring {
+      background: rgba(#e5e7eb, 0.5);
+    }
+    
+    .pulse-core {
+      background: $light-gradient;
+    }
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-core {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+}
+
+// Spinner Loader
+.loader-spinner {
+  position: relative;
+  
+  &.sm {
+    width: 24px;
+    height: 24px;
+    
+    svg {
+      circle {
+        stroke-width: 4;
+      }
+    }
+  }
+  
+  &.md {
+    width: 40px;
+    height: 40px;
+  }
+  
+  &.lg {
+    width: 60px;
+    height: 60px;
+  }
+  
+  &.xl {
+    width: 80px;
+    height: 80px;
+  }
+  
+  svg {
+    width: 100%;
+    height: 100%;
+    animation: rotate 2s linear infinite;
+    
+    circle {
+      stroke-linecap: round;
+      animation: dash 1.5s ease-in-out infinite;
+    }
+  }
+  
+  &.primary {
+    svg circle {
+      stroke: $primary-color;
+    }
+  }
+  
+  &.secondary {
+    svg circle {
+      stroke: $secondary-color;
+    }
+  }
+  
+  &.accent {
+    svg circle {
+      stroke: $accent-color;
+    }
+  }
+  
+  &.light {
+    svg circle {
+      stroke: #d1d5db;
+    }
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
+
+// Dots Loader
+.loader-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  .dot {
+    border-radius: 50%;
+    animation: dots-bounce 1.4s infinite ease-in-out both;
+    
+    &:nth-child(1) {
+      animation-delay: -0.32s;
+    }
+    
+    &:nth-child(2) {
+      animation-delay: -0.16s;
+    }
+    
+    &:nth-child(4) {
+      animation-delay: 0.16s;
+    }
+  }
+  
+  &.sm {
+    height: 16px;
+    
+    .dot {
+      width: 4px;
+      height: 4px;
+      margin: 0 2px;
+    }
+  }
+  
+  &.md {
+    height: 24px;
+    
+    .dot {
+      width: 6px;
+      height: 6px;
+      margin: 0 3px;
+    }
+  }
+  
+  &.lg {
+    height: 32px;
+    
+    .dot {
+      width: 8px;
+      height: 8px;
+      margin: 0 4px;
+    }
+  }
+  
+  &.xl {
+    height: 48px;
+    
+    .dot {
+      width: 12px;
+      height: 12px;
+      margin: 0 6px;
+    }
+  }
+  
+  &.primary .dot {
+    background-color: $primary-color;
+  }
+  
+  &.secondary .dot {
+    background-color: $secondary-color;
+  }
+  
+  &.accent .dot {
+    background-color: $accent-color;
+  }
+  
+  &.light .dot {
+    background-color: #d1d5db;
+  }
+}
+
+@keyframes dots-bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+// Progress Loader
+.loader-progress {
+  width: 100%;
+  max-width: 300px;
+  
+  .progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+    
+    .progress-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+  }
+  
+  .progress-text {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-align: center;
+  }
+  
+  &.sm {
+    max-width: 150px;
+    
+    .progress-bar {
+      height: 4px;
+    }
+    
+    .progress-text {
+      font-size: 0.75rem;
+    }
+  }
+  
+  &.lg {
+    max-width: 400px;
+    
+    .progress-bar {
+      height: 10px;
+    }
+  }
+  
+  &.xl {
+    max-width: 500px;
+    
+    .progress-bar {
+      height: 12px;
+    }
+    
+    .progress-text {
+      font-size: 1rem;
+    }
+  }
+  
+  &.primary {
+    .progress-fill {
+      background: $primary-gradient;
+    }
+    
+    .progress-text {
+      color: $primary-color;
+    }
+  }
+  
+  &.secondary {
+    .progress-fill {
+      background: $secondary-gradient;
+    }
+    
+    .progress-text {
+      color: $secondary-color;
+    }
+  }
+  
+  &.accent {
+    .progress-fill {
+      background: $accent-gradient;
+    }
+    
+    .progress-text {
+      color: $accent-color;
+    }
+  }
+  
+  &.light {
+    .progress-fill {
+      background: $light-gradient;
+    }
+    
+    .progress-text {
+      color: #6b7280;
+    }
+  }
+}
+
+// Skeleton Loader
+.loader-skeleton {
+  width: 100%;
+  
+  .skeleton-line {
+    height: 16px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+    
+    &:last-child {
+      width: 60%;
+    }
+  }
+  
+  &.sm {
+    max-width: 150px;
+    
+    .skeleton-line {
+      height: 8px;
+      margin-bottom: 6px;
+    }
+  }
+  
+  &.md {
+    max-width: 300px;
+  }
+  
+  &.lg {
+    max-width: 450px;
+    
+    .skeleton-line {
+      height: 20px;
+      margin-bottom: 10px;
+    }
+  }
+  
+  &.xl {
+    max-width: 600px;
+    
+    .skeleton-line {
+      height: 24px;
+      margin-bottom: 12px;
+    }
+  }
+  
+  &.primary {
+    .skeleton-line {
+      background: linear-gradient(90deg, #eef2ff 25%, #e0e7ff 50%, #eef2ff 75%);
+      background-size: 200% 100%;
+    }
+  }
+  
+  &.secondary {
+    .skeleton-line {
+      background: linear-gradient(90deg, #ecfdf5 25%, #d1fae5 50%, #ecfdf5 75%);
+      background-size: 200% 100%;
+    }
+  }
+  
+  &.accent {
+    .skeleton-line {
+      background: linear-gradient(90deg, #fffbeb 25%, #fef3c7 50%, #fffbeb 75%);
+      background-size: 200% 100%;
+    }
+  }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

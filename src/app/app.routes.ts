@@ -10,6 +10,10 @@ import { ForgotComponent } from './Component/auth/forgot/forgot.component';
 import { UnitwiseComponent } from './Component/UnitwiseTAble/unitwise/unitwise.component';
 import { DashboredhomeComponent } from './Component/dashboredhome/dashboredhome.component';
 import { HomeComponent } from './Component/home/home.component';
+import { OdnpauploadComponent } from './Component/UnitwiseTAble/odnpaupload/odnpaupload.component';
+import { StatewiseComponent } from './Component/UnitwiseTAble/statewise/statewise.component';
+import { XbucketUnitWiseComponent } from './Component/UnitwiseTAble/xbucket-unit-wise/xbucket-unit-wise.component';
+import { XbucketStateWiseComponent } from './Component/UnitwiseTAble/xbucket-state-wise/xbucket-state-wise.component';
 export const routes: Routes = [
   
   
@@ -25,7 +29,11 @@ export const routes: Routes = [
         {path:'edit/:id',component:UserformComponent},
         { path: 'userview/:id', component: UserdetailsComponent },
         { path: 'usertable', component: UsertableComponent },
-      { path:'unitwise',component:UnitwiseComponent}
+      { path:'unitwise',component:UnitwiseComponent},
+      { path:'odnpaupload',component:OdnpauploadComponent},
+      { path:'statewise',component:StatewiseComponent},
+      {path:'xbucketunitwise',component:XbucketUnitWiseComponent},
+      {path:'xbucketstatewise',component:XbucketStateWiseComponent}
       ]
     },
     { path: 'signin', component:UsersignComponent },

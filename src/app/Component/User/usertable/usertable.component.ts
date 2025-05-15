@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { UserDetails } from '../../model/UserDetails';
 import { UserService } from '../../service/user.service';
+import { LoaderService } from '../../service/loader.service';
+import { CardSkeletonLoaderComponent } from '../../loaders/card-skeleton-loader/card-skeleton-loader.component';
 
 // 
 
@@ -14,6 +16,7 @@ import { UserService } from '../../service/user.service';
   styleUrl: './usertable.component.scss'
 })
 export class UsertableComponent implements OnInit {
+ @Input() type: 'stat' | 'chart' | 'table' | 'profile' = 'stat';
   users: UserDetails[] = [];
   filteredUsers: UserDetails[] = [];
   selectedUsers: string[] = [];
@@ -32,8 +35,9 @@ export class UsertableComponent implements OnInit {
   currentPage = 1;
   pageSize = 10;
   totalPages = 1;
+isLoading: any;
 
-  constructor(private router: Router,private userservice:UserService) { }
+  constructor(private router: Router,private userservice:UserService,private loader:LoaderService) { }
 
   ngOnInit(): void {
     // In a real app, you would fetch users from a service
@@ -42,7 +46,9 @@ export class UsertableComponent implements OnInit {
 
   loadUsers(): void {
     // Mock data for demonstration
+  this.loader.startLoader();
     this.userservice.getUsersDetails().subscribe((res:any)=>{
+      this.loader.stopLoader();
       this.users=res.data;
       this.applyFilter();
     })
