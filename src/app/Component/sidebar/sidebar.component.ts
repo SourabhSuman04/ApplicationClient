@@ -34,7 +34,7 @@ export class SidebarComponent implements OnInit {
     { label: 'Users', route: 'usertable', icon: 'fas fa-users' },
     { label: 'Analytics',  icon: 'fas fa-chart-bar' , expanded: false,
       children: [
-        { label: 'UnitWiseRecords', route: 'unitwise'  },
+        { label: 'Visits V/s Collection Records', route: 'unitwise'  },
         {
           label: 'ODNPA Upload', route: 'odnpaupload',
         },
