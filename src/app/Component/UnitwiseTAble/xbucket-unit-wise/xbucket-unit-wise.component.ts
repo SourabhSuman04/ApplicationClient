@@ -62,8 +62,8 @@ sortDirection: 'asc' | 'desc' = 'asc';
         // const totalVisited = group.reduce((sum, rec) => sum + rec.visitedClients, 0);
   
         group.forEach(rec => {
-          rec.reducedPercent = rec.uniqueVisitsonXbucket ? ((rec.reduced / rec.uniqueVisitsonXbucket) * 100).toFixed(1) + '%' : '0%';
-          rec.collectedPercent = rec.uniqueVisitsonXbucket ? ((rec.collected / rec.uniqueVisitsonXbucket) * 100).toFixed(1) + '%' : '0%';
+          rec.reducedPercent = rec.unique_Visits_on_X_bucket ? ((rec.reduced / rec.unique_Visits_on_X_bucket) * 100).toFixed(1) + '%' : '0%';
+          rec.collectedPercent = rec.unique_Visits_on_X_bucket ? ((rec.collected / rec.unique_Visits_on_X_bucket) * 100).toFixed(1) + '%' : '0%';
         });
       });
     }
@@ -71,11 +71,11 @@ sortDirection: 'asc' | 'desc' = 'asc';
       getGroupTotal(group: xbucketunitwise[]) {
 
       const x_Bucket_flow_clients = group.reduce((a, b) => a + b.x_Bucket_flow_clients, 0);
-      const visitsonXbucket = group.reduce((a, b) => a + b.visitsonXbucket, 0);
-      const uniqueVisitsonXbucket = group.reduce((a, b) => a + b.uniqueVisitsonXbucket, 0);
+      const visitsonXbucket = group.reduce((a, b) => a + b.visits_on_X_bucket, 0);
+      const uniqueVisitsonXbucket = group.reduce((a, b) => a + b.unique_Visits_on_X_bucket, 0);
       const reduced = group.reduce((a, b) => a + b.reduced, 0);
       const collected = group.reduce((a, b) => a + b.collected, 0);
-      const collectedAmount = group.reduce((a, b) => a + b.collectedAmount, 0);
+      const collectedAmount = group.reduce((a, b) => a + b.collected_Amount, 0);
     
       const reducedPercent = uniqueVisitsonXbucket ? ((reduced / uniqueVisitsonXbucket) * 100).toFixed(2) + '%' : '0%';
       const collectedPercent = uniqueVisitsonXbucket ? ((collected / uniqueVisitsonXbucket) * 100).toFixed(2) + '%' : '0%';

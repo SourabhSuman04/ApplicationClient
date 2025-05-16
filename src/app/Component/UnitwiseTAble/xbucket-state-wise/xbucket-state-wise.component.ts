@@ -61,11 +61,11 @@ export class XbucketStateWiseComponent {
           grouped[bh][groupKey] = { ...rec }; // clone first entry
         } else {
           grouped[bh][groupKey].x_Bucket_flow_clients += rec.x_Bucket_flow_clients || 0;
-          grouped[bh][groupKey].visitsonXbucket += rec.visitsonXbucket || 0;
-          grouped[bh][groupKey].uniqueVisitsonXbucket += rec.uniqueVisitsonXbucket || 0;
+          grouped[bh][groupKey].visits_on_X_bucket += rec.visits_on_X_bucket || 0;
+          grouped[bh][groupKey].unique_Visits_on_X_bucket += rec.unique_Visits_on_X_bucket || 0;
           grouped[bh][groupKey].reduced += rec.reduced || 0;
           grouped[bh][groupKey].collected += rec.collected || 0;
-          grouped[bh][groupKey].collectedAmount += rec.collectedAmount || 0;
+          grouped[bh][groupKey].collected_Amount += rec.collected_Amount || 0;
         }
       });
   
@@ -76,7 +76,7 @@ export class XbucketStateWiseComponent {
   
         // add percentages
         bhEntries.forEach(rec => {
-          const visited = rec.uniqueVisitsonXbucket || 0;
+          const visited = rec.unique_Visits_on_X_bucket || 0;
           rec.reducedPercent = visited ? ((rec.reduced / visited) * 100).toFixed(1) + '%' : '0%';
           rec.collectedPercent = visited ? ((rec.collected / visited) * 100).toFixed(1) + '%' : '0%';
         });
@@ -90,8 +90,8 @@ export class XbucketStateWiseComponent {
 
     group.forEach((rec: any) => {
       x_Bucket_flow_clients += rec.x_Bucket_flow_clients || 0;
-      visitsonXbucket += rec.visitsonXbucket || 0;
-      uniqueVisitsonXbucket += rec.uniqueVisitsonXbucket || 0;
+      visitsonXbucket += rec.visits_on_X_bucket || 0;
+      uniqueVisitsonXbucket += rec.unique_Visits_on_X_bucket || 0;
       reduced += rec.reduced || 0;
       collected += rec.collected || 0;
       collectedAmount += rec.collected_Amount || 0;
