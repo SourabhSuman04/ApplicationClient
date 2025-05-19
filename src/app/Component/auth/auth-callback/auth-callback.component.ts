@@ -18,6 +18,7 @@ export class AuthCallbackComponent implements OnInit {
 
   async ngOnInit() {
     const user = await this.appwriteService.getUser();
+    console.log("dsnksjdk")
     if (user) {
       console.log('Logged in as:', user);
       this.router.navigate(['/dashboard']); // or wherever you want

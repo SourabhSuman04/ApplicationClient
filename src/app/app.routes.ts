@@ -16,32 +16,29 @@ import { XbucketUnitWiseComponent } from './Component/UnitwiseTAble/xbucket-unit
 import { XbucketStateWiseComponent } from './Component/UnitwiseTAble/xbucket-state-wise/xbucket-state-wise.component';
 import { AuthCallbackComponent } from './Component/auth/auth-callback/auth-callback.component';
 export const routes: Routes = [
-  
-  
-  {
-      path: 'dashboard',
-      component: DashboardComponent,
-      canActivate: [authGuard],  
-      children: [
-        { path: '', redirectTo: 'home', pathMatch: 'full' },
-        { path: 'home', component: DashboredhomeComponent },
-        { path: 'dashboardhome', component: HomeComponent },
-        { path: 'add-user', component: UserformComponent },
-        {path:'edit/:id',component:UserformComponent},
-        { path: 'userview/:id', component: UserdetailsComponent },
-        { path: 'usertable', component: UsertableComponent },
-      { path:'unitwise',component:UnitwiseComponent},
-      { path:'odnpaupload',component:OdnpauploadComponent},
-      { path:'statewise',component:StatewiseComponent},
-      {path:'xbucketunitwise',component:XbucketUnitWiseComponent},
-      {path:'xbucketstatewise',component:XbucketStateWiseComponent}
-      ]
-    },
-    { path: 'signin', component:UsersignComponent },
-    { path: 'signup', component: UsersignupComponent },
-    { path: 'forgot', component: ForgotComponent     },
-    { path: 'auth/callback', component: AuthCallbackComponent },
-    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-    { path: '**', redirectTo: 'dashboard' } 
-  ];
-  
+    {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [authGuard],
+    children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', component: DashboredhomeComponent },
+      { path: 'dashboardhome', component: HomeComponent },
+      { path: 'add-user', component: UserformComponent },
+      { path: 'edit/:id', component: UserformComponent },
+      { path: 'userview/:id', component: UserdetailsComponent },
+      { path: 'usertable', component: UsertableComponent },
+      { path: 'unitwise', component: UnitwiseComponent },
+      { path: 'odnpaupload', component: OdnpauploadComponent },
+      { path: 'statewise', component: StatewiseComponent },
+      { path: 'xbucketunitwise', component: XbucketUnitWiseComponent },
+      { path: 'xbucketstatewise', component: XbucketStateWiseComponent }
+    ]
+  },
+  { path: 'signin', component: UsersignComponent },
+  { path: 'signup', component: UsersignupComponent },
+  { path: 'forgot', component: ForgotComponent },
+  { path: 'auth/callback', component: AuthCallbackComponent },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '**', redirectTo: 'dashboard' }
+];
