@@ -81,7 +81,7 @@ console.log(this.isLoading)
 //   }
 
   loginWithGoogle() {
-    const redirectUrl = 'http://localhost:4200'; // Must match your Appwrite config
+    const redirectUrl = 'https://applicationclient.netlify.app'; // Must match your Appwrite config
     this.auth.loginWithOAuth('google', redirectUrl, redirectUrl);
   }
 }
