@@ -4,10 +4,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { xbucketunitwise } from '../../model/xbucketunitwise';
 import { Router } from '@angular/router';
 import { UnitwiseService } from '../../service/unitwise.service';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-xbucket-state-wise',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule,MatDialogModule,MatButtonModule],
   templateUrl: './xbucket-state-wise.component.html',
   styleUrl: './xbucket-state-wise.component.scss'
 })

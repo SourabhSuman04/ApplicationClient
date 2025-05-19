@@ -14,6 +14,7 @@ import { OdnpauploadComponent } from './Component/UnitwiseTAble/odnpaupload/odnp
 import { StatewiseComponent } from './Component/UnitwiseTAble/statewise/statewise.component';
 import { XbucketUnitWiseComponent } from './Component/UnitwiseTAble/xbucket-unit-wise/xbucket-unit-wise.component';
 import { XbucketStateWiseComponent } from './Component/UnitwiseTAble/xbucket-state-wise/xbucket-state-wise.component';
+import { AuthCallbackComponent } from './Component/auth/auth-callback/auth-callback.component';
 export const routes: Routes = [
   
   
@@ -39,8 +40,8 @@ export const routes: Routes = [
     { path: 'signin', component:UsersignComponent },
     { path: 'signup', component: UsersignupComponent },
     { path: 'forgot', component: ForgotComponent     },
+    { path: 'auth/callback', component: AuthCallbackComponent },
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-    { path: '**', redirectTo: 'dashboard' } ,
- // optional wildcard fallback
+    { path: '**', redirectTo: 'dashboard' } 
   ];
   

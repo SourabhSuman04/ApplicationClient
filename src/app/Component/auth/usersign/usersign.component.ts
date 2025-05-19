@@ -5,6 +5,7 @@ import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
 import { ButtonLoaderComponent } from '../../loaders/button-loader/button-loader.component';
 import { LoaderService } from '../../service/loader.service';
+import { GoogleLoginProvider, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 
 @Component({
   selector: 'app-usersign',
@@ -22,7 +23,9 @@ export class UsersignComponent  implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private auth:AuthService,
-    private loader:LoaderService
+    private loader:LoaderService,
+    private authService: SocialAuthService,
+   
   ) { }
 
   ngOnInit(): void {
@@ -65,5 +68,20 @@ console.log(this.isLoading)
     })
     // Navigate to dashboard after successful signin
    
+  }
+
+//  loginWithGoogle() {
+//   console.log('user')
+//     // Trigger Google login popup
+//  this.authService.authState.subscribe((user: SocialUser | null) => {
+//   if (user) {
+//     console.log(user.idToken);
+//   }
+// });
+//   }
+
+  loginWithGoogle() {
+    const redirectUrl = 'http://localhost:4200'; // Must match your Appwrite config
+    this.auth.loginWithOAuth('google', redirectUrl, redirectUrl);
   }
 }
