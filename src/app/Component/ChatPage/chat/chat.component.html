@@ -1,0 +1,14 @@
+<div class="chat-widget">
+  <!-- Chat Interface -->
+  <app-chatinterface 
+    *ngIf="isChatOpen"
+    [@slideInOut]>
+  </app-chatinterface>
+  
+  <!-- Floating Chat Button -->
+  <app-chatbutton 
+    [isOpen]="isChatOpen"
+    [hasUnreadMessages]="hasUnreadMessages"
+    (toggle)="toggleChat()">
+  </app-chatbutton>
+</div>

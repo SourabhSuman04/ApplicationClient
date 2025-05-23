@@ -1,0 +1,143 @@
+<div class="chat-interface" [ngClass]="{'minimized': isMinimized}">
+  <!-- Chat Header -->
+  <div class="chat-header">
+    <div class="header-info">
+      <div class="ai-avatar">
+        <div class="avatar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+          </svg>
+        </div>
+        <div class="status-indicator"></div>
+      </div>
+      <div class="ai-info">
+        <h3>Dashboard Assistant</h3>
+        <p class="status">Online • Ready to help</p>
+      </div>
+    </div>
+    
+    <div class="header-actions">
+      <button class="action-btn" (click)="toggleMinimize()" title="Minimize">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/>
+        </svg>
+      </button>
+      <button class="action-btn" (click)="clearChat()" title="Clear chat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Chat Messages -->
+  <div class="chat-messages" #messagesContainer>
+    <div class="messages-container">
+      <!-- Message List -->
+      <div *ngFor="let message of messages; trackBy: trackByMessageId" 
+           class="message-wrapper" 
+           [ngClass]="message.sender">
+        
+        <!-- AI Message -->
+        <div *ngIf="message.sender === 'ai'" class="message ai-message">
+          <div class="message-avatar">
+            <div class="ai-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M12 1v6m0 6v6"/>
+                <path d="m21 12-6-3-6 3-6-3"/>
+              </svg>
+            </div>
+          </div>
+          <div class="message-content">
+            <div class="message-bubble">
+              <p [innerHTML]="formatMessage(message.content)"></p>
+              <span class="message-time">{{ message.timestamp | date:'short' }}</span>
+            </div>
+            
+            <!-- Quick Replies -->
+            <div *ngIf="message.quickReplies && message.quickReplies.length > 0" 
+                 class="quick-replies">
+              <button *ngFor="let reply of message.quickReplies" 
+                      class="quick-reply-btn"
+                      (click)="sendQuickReply(reply)">
+                {{ reply }}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- User Message -->
+        <div *ngIf="message.sender === 'user'" class="message user-message">
+          <div class="message-content">
+            <div class="message-bubble">
+              <p>{{ message.content }}</p>
+              <span class="message-time">{{ message.timestamp | date:'short' }}</span>
+            </div>
+          </div>
+          <div class="message-avatar">
+            <div class="user-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Typing Indicator -->
+      <div *ngIf="isTyping" class="message-wrapper ai">
+        <div class="message ai-message">
+          <div class="message-avatar">
+            <div class="ai-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M12 1v6m0 6v6"/>
+                <path d="m21 12-6-3-6 3-6-3"/>
+              </svg>
+            </div>
+          </div>
+          <div class="message-content">
+            <div class="typing-indicator">
+              <div class="typing-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <span class="typing-text">AI is typing...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chat Input -->
+  <div class="chat-input">
+    <div class="input-container">
+      <textarea 
+        #messageInput
+        [(ngModel)] ="newMessage"
+        (keydown)="onKeyPress($event)"
+        placeholder="Type your message..."
+        rows="1"
+        class="message-textarea"
+        maxlength="500">
+      </textarea>
+      
+      <button 
+        class="send-button" 
+        [disabled]="!newMessage.trim()"
+        (click)="sendMessage()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+        </svg>
+      </button>
+    </div>
+    
+    <div class="input-footer">
+      <span class="character-count">{{ newMessage.length }}/500</span>
+      <span class="powered-by">Powered by AI Assistant</span>
+    </div>
+  </div>
+</div>

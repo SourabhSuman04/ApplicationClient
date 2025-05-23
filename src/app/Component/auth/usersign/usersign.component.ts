@@ -9,11 +9,11 @@ import { GoogleLoginProvider, SocialAuthService, SocialUser } from '@abacritt/an
 
 @Component({
   selector: 'app-usersign',
-  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule,ButtonLoaderComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, ButtonLoaderComponent],
   templateUrl: './usersign.component.html',
   styleUrl: './usersign.component.scss'
 })
-export class UsersignComponent  implements OnInit {
+export class UsersignComponent implements OnInit {
   signinForm: FormGroup;
   submitted = false;
   showPassword = false;
@@ -22,10 +22,10 @@ export class UsersignComponent  implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private auth:AuthService,
-    private loader:LoaderService,
+    private auth: AuthService,
+    private loader: LoaderService,
     private authService: SocialAuthService,
-   
+
   ) { }
 
   ngOnInit(): void {
@@ -36,7 +36,7 @@ export class UsersignComponent  implements OnInit {
     });
   }
 
-  // Convenience getter for easy access to form fields
+
   get f() { return this.signinForm.controls; }
 
   togglePasswordVisibility(): void {
@@ -44,8 +44,8 @@ export class UsersignComponent  implements OnInit {
   }
 
   onSubmit(): void {
-this.loader.startLoader()
-console.log(this.isLoading)
+    this.loader.startLoader()
+    console.log(this.isLoading)
     this.submitted = true;
 
     // Stop here if form is invalid
@@ -58,27 +58,27 @@ console.log(this.isLoading)
     console.log('Form submitted:', this.signinForm.value);
 
 
-    this.auth.signin(this.signinForm.value).subscribe((res:any)=>{
+    this.auth.signin(this.signinForm.value).subscribe((res: any) => {
       this.loader.stopLoader()
       alert(res.message)
-      localStorage.setItem('name',res.data.username)
-      localStorage.setItem('email',res.data.email)
-      localStorage.setItem('token',res.data.token)
-       this.router.navigate(['/dashboard']);
+      localStorage.setItem('name', res.data.username)
+      localStorage.setItem('email', res.data.email)
+      localStorage.setItem('token', res.data.token)
+      this.router.navigate(['/dashboard']);
     })
     // Navigate to dashboard after successful signin
-   
+
   }
 
-//  loginWithGoogle() {
-//   console.log('user')
-//     // Trigger Google login popup
-//  this.authService.authState.subscribe((user: SocialUser | null) => {
-//   if (user) {
-//     console.log(user.idToken);
-//   }
-// });
-//   }
+  //  loginWithGoogle() {
+  //   console.log('user')
+  //     // Trigger Google login popup
+  //  this.authService.authState.subscribe((user: SocialUser | null) => {
+  //   if (user) {
+  //     console.log(user.idToken);
+  //   }
+  // });
+  //   }
 
   loginWithGoogle() {
     const redirectUrl = 'https://applicationclient.netlify.app/auth/callback'; // Must match your Appwrite config

@@ -7,10 +7,11 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { LoaderComponent } from '../loaders/loader/loader.component';
 import { LoaderService } from '../service/loader.service';
 import { DashboardLoaderComponent } from '../loaders/dashboard-loader/dashboard-loader.component';
+import { ChatComponent } from "../ChatPage/chat/chat.component";
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule,ReactiveFormsModule,FormsModule,RouterOutlet,SidebarComponent,LoaderComponent,DashboardLoaderComponent],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterOutlet, SidebarComponent, LoaderComponent, DashboardLoaderComponent, ChatComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
