@@ -79,8 +79,8 @@ export class AuthService {
   }
 
   loginWithGitHub() {
-    const success = 'http://localhost:63951/auth-success'; // or wherever you want to redirect
-    const failure = 'http://localhost:63951/auth-failure';
+    const success = 'https://applicationclient.netlify.app/auth-success'; // or wherever you want to redirect
+    const failure = 'https://applicationclient.netlify.app/auth-failure';
 
     this.account1.createOAuth2Session(OAuthProvider.Github, success, failure);
   }
