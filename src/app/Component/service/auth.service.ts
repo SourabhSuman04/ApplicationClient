@@ -3,12 +3,14 @@ import { Injectable } from '@angular/core';
 import { ApiResponse } from '../helper/apiresponse';
 import { Users } from '../model/Users';
 import { environment } from '../../enivironment/environmentr';
-import { Client, Account } from 'appwrite';
+import { Client, Account, OAuthProvider } from 'appwrite';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   authState: any;
+  client1 = new Client();
+  account1: Account;
    client: Client;
   account: Account;
 
@@ -16,7 +18,15 @@ export class AuthService {
       .setEndpoint('https://fra.cloud.appwrite.io/v1') // Replace with your Appwrite endpoint
       .setProject('682aba13001ca98f6656'); // Replace with your project ID
 
-    this.account = new Account(this.client); }
+    this.account = new Account(this.client);
+  
+     this.client1
+      .setEndpoint('https://fra.cloud.appwrite.io/v1') // Replace with your Appwrite endpoint
+      .setProject('682aba13001ca98f6656'); // Replace with your Project ID
+
+    this.account1 = new Account(this.client1);
+  
+  }
 
   signin(model:any)
   {
@@ -58,6 +68,21 @@ export class AuthService {
 
     async logout() {
     return await this.account.deleteSession('current');
+  }
+
+   async getCurrentUser() {
+    try {
+      return await this.account.get();
+    } catch (err) {
+      return null;
+    }
+  }
+
+  loginWithGitHub() {
+    const success = 'http://localhost:63951/auth-success'; // or wherever you want to redirect
+    const failure = 'http://localhost:63951/auth-failure';
+
+    this.account1.createOAuth2Session(OAuthProvider.Github, success, failure);
   }
 
   } 

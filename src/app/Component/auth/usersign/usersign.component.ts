@@ -34,6 +34,7 @@ export class UsersignComponent implements OnInit {
       password: ['', Validators.required],
       rememberMe: [false]
     });
+   
   }
 
 
@@ -79,6 +80,16 @@ export class UsersignComponent implements OnInit {
   //   }
   // });
   //   }
+
+    loginGithub() {
+    this.auth.loginWithGitHub();
+
+    this.auth.getCurrentUser().then(user => {
+    console.log('Logged in user:', user);
+    const userId: string | undefined = user?.$id;
+    localStorage.setItem('token','default')
+  });
+  }
 
   loginWithGoogle() {
     const redirectUrl = 'https://applicationclient.netlify.app/auth/callback'; // Must match your Appwrite config
